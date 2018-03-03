@@ -1,17 +1,23 @@
 package com.vivek.app.controller;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.vivek.app.ecommercebackend.dao.CategoryDao;
+
 @Controller
 public class PageController {
 
+	@Autowired
+	private CategoryDao categoryDao;
 	
 	@RequestMapping(value={"/","/home","/index"})
 	public ModelAndView index(){
 		ModelAndView mv =  new ModelAndView("page");
 		mv.addObject("title", "Home");
+		mv.addObject("categories", categoryDao.list());
 		mv.addObject("userClickHome",true);
 		return mv;
 	}
@@ -36,7 +42,7 @@ public class PageController {
 	public ModelAndView listProducts(){
 		ModelAndView mv = new ModelAndView("page");
 		mv.addObject("title", "Products");
-		mv.addObject("userClickProducts", true);
+		mv.addObject("userClickAllProducts", true);
 		return mv;
 	}
 	

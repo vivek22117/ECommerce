@@ -12,7 +12,9 @@ $(function(){
 		$('#contact').addClass('active');
 		break;
 	default:
-		$('#home').addClass('active');
+		if(menu=='Home') break;
+		$('#list').addClass('active');
+	    $('#a_'+menu).addClass('active')
 		break;
 	}
 });
