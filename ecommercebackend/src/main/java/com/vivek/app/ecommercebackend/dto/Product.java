@@ -9,6 +9,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 @Table(name="Products")
 public class Product {
@@ -19,29 +21,34 @@ public class Product {
 	private String code;
 	private String name;
 	private String brand;
+	
+	@JsonIgnore
 	private String description;
 	
 	@Column(name="Unit_Price")
 	private double unitPrice;
 	private int quantity;
 	
+	@JsonIgnore
 	@Column(name="is_Active")
 	private boolean isActive;
 	
+	@JsonIgnore
 	@Column(name="Category_Id")
 	private int categoryId;
 	
+	@JsonIgnore
 	@Column(name="Supplier_Id")
 	private int supplierId;
 	private int purchases;
 	private int views;
 	
 	
-	public Product(String code) {
+	public Product() {
 		this.code = "PRD"+UUID.randomUUID().toString().substring(26).toUpperCase();
 	}
 	
-	
+
 	public int getId() {
 		return id;
 	}
